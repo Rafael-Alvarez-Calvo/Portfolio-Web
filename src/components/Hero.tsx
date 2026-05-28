@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import rafaelPhoto from '../assets/rafael.png'
-import { useReveal } from '../hooks/useReveal'
-import { useCounter } from '../hooks/useCounter'
+import { useReveal, useCounter } from '../hooks/useReveal'
+
 
 const ROLES = [
   'Frontend Developer',

@@ -58,7 +58,7 @@ const projects = [
 ]
 
 function ProjectCard({ p, delay }: { p: typeof projects[0]; delay: number }) {
-  const { ref, visible } = useReveal()
+  const { ref, visible } = useReveal<HTMLAnchorElement>()
   const delayClass = ['', 'd1', 'd2'][delay] ?? ''
 
   return (
