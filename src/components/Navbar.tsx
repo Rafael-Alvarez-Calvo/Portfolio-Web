@@ -31,7 +31,7 @@ export default function Navbar() {
   ]
 
   return (
-    <nav className={`fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center transition-all duration-300 ${scrolled ? 'bg-[rgba(4,13,30,0.92)] backdrop-blur-xl border-b border-[var(--border)]' : ''}`}>
+    <nav className={`fixed top-0 w-full z-50 px-6 flex justify-between items-center transition-all duration-300 h-16 ${scrolled ? 'bg-[rgba(4,13,30,0.92)] backdrop-blur-xl border-b border-[var(--border)]' : ''}`}>
       <a href="#hero" className="font-mono text-cyan text-base tracking-wide">
         Rafael<span className="text-blue">.AC</span>
       </a>
@@ -40,36 +40,37 @@ export default function Navbar() {
       <ul className="hidden md:flex gap-7 list-none items-center">
         {links.map(l => (
           <li key={l.href}>
-            <a href={l.href} className="text-[var(--text-muted)] hover:text-[var(--text)] text-sm font-medium tracking-wide transition-colors duration-200">
+            <a href={l.href} className="text-[var(--text-muted)] hover:text-[var(--text)] text-sm font-medium tracking-wide transition-colors">
               {l.label}
             </a>
           </li>
         ))}
       </ul>
 
-      {/* Right controls */}
-      <div className="hidden md:flex items-center gap-3">
+      {/* Right controls — all h-9 for consistent height */}
+      <div className="hidden md:flex items-center gap-2">
 
-        {/* Language toggle */}
+        {/* Language toggle — shows the OTHER language to switch to */}
         <button
           onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
-          className="flex items-center gap-1.5 border border-[var(--border)] rounded-lg px-3 py-1.5 text-sm font-mono text-[var(--text-muted)] hover:border-blue hover:text-cyan transition-all"
+          className="h-9 px-3 flex items-center gap-1.5 border border-[var(--border)] rounded-lg font-mono text-xs text-[var(--text-muted)] hover:border-blue hover:text-cyan transition-all whitespace-nowrap"
           title="Switch language"
         >
-          <span className="text-base">{lang === 'es' ? '🇪🇸' : '🇬🇧'}</span>
-          <span>{lang === 'es' ? 'ES' : 'EN'}</span>
+          <span className="text-sm">{lang === 'es' ? '🇬🇧' : '🇪🇸'}</span>
+          <span>{lang === 'es' ? 'EN' : 'ES'}</span>
         </button>
 
         {/* CV dropdown */}
         <div ref={cvRef} className="relative">
           <button
             onClick={() => setCvOpen(!cvOpen)}
-            className="flex items-center gap-1.5 bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.3)] rounded-lg px-3 py-1.5 text-sm font-semibold text-cyan hover:bg-[rgba(59,130,246,0.18)] transition-all"
+            className="h-9 px-3 flex items-center gap-1.5 bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.3)] rounded-lg text-xs font-semibold text-cyan hover:bg-[rgba(59,130,246,0.18)] transition-all whitespace-nowrap"
           >
-            ⬇ {t.nav.downloadCV}
+            <span>⬇</span>
+            <span>{t.nav.downloadCV}</span>
           </button>
           {cvOpen && (
-            <div className="absolute right-0 top-full mt-2 bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.4)] min-w-[180px] z-50">
+            <div className="absolute right-0 top-full mt-2 bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.4)] min-w-[178px] z-50">
               <a href="/cv-es.pdf" download className="flex items-center gap-2.5 px-4 py-3 text-sm text-[var(--text)] hover:bg-[rgba(59,130,246,0.1)] transition-colors border-b border-[var(--border)]">
                 <span>🇪🇸</span> {t.nav.cvEs}
               </a>
@@ -80,7 +81,7 @@ export default function Navbar() {
           )}
         </div>
 
-        <a href="#contact" className="bg-blue text-white text-sm font-semibold px-4 py-2 rounded-lg hover:opacity-85 transition-opacity">
+        <a href="#contact" className="h-9 px-4 flex items-center bg-blue text-white text-sm font-semibold rounded-lg hover:opacity-85 transition-opacity whitespace-nowrap">
           {t.nav.contact}
         </a>
       </div>
@@ -99,7 +100,6 @@ export default function Navbar() {
               {l.label}
             </a>
           ))}
-          {/* Mobile lang + CV */}
           <div className="flex gap-2 mt-2">
             <button onClick={() => setLang(lang === 'es' ? 'en' : 'es')} className="flex-1 border border-[var(--border)] rounded-lg py-2 text-sm font-mono text-cyan">
               {lang === 'es' ? '🇬🇧 EN' : '🇪🇸 ES'}
