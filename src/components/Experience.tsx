@@ -76,16 +76,14 @@ function TimelineItem({ job, index, currentLabel }: {
 
       {/* Content */}
       <div className="pb-10 flex-1 min-w-0">
-        {/* Logo + date row */}
-        <div className="flex items-center justify-between gap-4 mb-2 flex-wrap">
-          {Logo && (
-            <div className="h-8 flex items-center">
-              <Logo className="h-7 max-w-[130px]"/>
-            </div>
-          )}
-          <div className="font-mono text-[0.75rem] text-[var(--text-dim)]">{job.date}</div>
-        </div>
+        {/* Logo */}
+        {Logo && (
+          <div className="h-8 flex items-center mb-3">
+            <Logo className="h-7 max-w-[130px]"/>
+          </div>
+        )}
 
+        <div className="font-mono text-[0.75rem] text-[var(--text-dim)] mb-1">{job.date}</div>
         <div className="text-sm font-semibold mb-1" style={{ color: job.current ? '#06b6d4' : '#3b82f6' }}>
           {job.company}
         </div>
