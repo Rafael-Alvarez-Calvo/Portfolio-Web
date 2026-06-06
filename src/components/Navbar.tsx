@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useLang } from "../contexts/LanguageContext";
+import { Download } from "lucide-react";
 
 export default function Navbar() {
   const { lang, setLang, t } = useLang();
@@ -79,7 +80,7 @@ export default function Navbar() {
               onClick={() => setCvOpen(!cvOpen)}
               className="h-9 px-3 flex items-center gap-1.5 bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.3)] rounded-lg text-xs font-semibold text-cyan hover:bg-[rgba(59,130,246,0.18)] transition-all whitespace-nowrap"
             >
-              ⬇ {t.nav.downloadCV}
+              <Download className="w-4 h-4" /> {t.nav.downloadCV}
             </button>
             {cvOpen && (
               <div className="absolute right-0 top-full mt-2 bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] min-w-[178px] z-50">
