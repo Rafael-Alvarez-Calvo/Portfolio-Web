@@ -78,17 +78,19 @@ function StatItem({
 // Spacing within columns: 14% (~75px). Each badge ~30px tall → no overlap.
 const ICONS = [
   // ─── LEFT COLUMN: top 15% → 85%, step 14% ───────────────────────────────
-  { label:"React",      color:"#61dafb", bg:"rgba(97,218,251,0.08)",  border:"rgba(97,218,251,0.28)",  delay:0,   pos:{top:"15%", left:"1%"},
+  { label:"React",      color:"#61dafb", bg:"rgba(97,218,251,0.08)",  border:"rgba(97,218,251,0.28)",  delay:0,   pos:{top:"12%", left:"1%"},
     svg:<svg viewBox="0 0 24 24" width="16" height="16" fill="#61dafb"><circle cx="12" cy="12" r="2.2"/><ellipse cx="12" cy="12" rx="10" ry="3.7" fill="none" stroke="#61dafb" strokeWidth="1.2"/><ellipse cx="12" cy="12" rx="10" ry="3.7" fill="none" stroke="#61dafb" strokeWidth="1.2" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="3.7" fill="none" stroke="#61dafb" strokeWidth="1.2" transform="rotate(120 12 12)"/></svg> },
-  { label:"TypeScript", color:"#3178c6", bg:"rgba(49,120,198,0.1)",   border:"rgba(49,120,198,0.3)",   delay:1.2, pos:{top:"29%", left:"2%"},
+  { label:"TypeScript", color:"#3178c6", bg:"rgba(49,120,198,0.1)",   border:"rgba(49,120,198,0.3)",   delay:1.2, pos:{top:"24%", left:"2%"},
     svg:<svg viewBox="0 0 24 24" width="16" height="16"><rect width="24" height="24" rx="3" fill="#3178c6"/><text x="3" y="18" fontSize="11" fontWeight="bold" fill="white" fontFamily="monospace">TS</text></svg> },
-  { label:"Redux",      color:"#764abc", bg:"rgba(118,74,188,0.1)",   border:"rgba(118,74,188,0.28)",  delay:2.4, pos:{top:"43%", left:"1%"},
+  { label:"Redux",      color:"#764abc", bg:"rgba(118,74,188,0.1)",   border:"rgba(118,74,188,0.28)",  delay:2.4, pos:{top:"36%", left:"1%"},
     svg:<svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M16 5.5C18 7 19 9 18.5 12" stroke="#764abc" strokeWidth="1.3" strokeLinecap="round"/><path d="M8 5.5C6 7 5 9 5.5 12" stroke="#764abc" strokeWidth="1.3" strokeLinecap="round"/><path d="M8 17c1 1.5 2.4 2 4 2s3-.5 4-2" stroke="#764abc" strokeWidth="1.3" strokeLinecap="round"/><circle cx="12" cy="12" r="2.6" fill="none" stroke="#764abc" strokeWidth="1.3"/><circle cx="19" cy="12" r="1.3" fill="#764abc"/><circle cx="5" cy="12" r="1.3" fill="#764abc"/><circle cx="12" cy="19.5" r="1.3" fill="#764abc"/></svg> },
-  { label:"Formik",     color:"#0ea5e9", bg:"rgba(14,165,233,0.08)",  border:"rgba(14,165,233,0.25)",  delay:0.7, pos:{top:"57%", left:"2%"},
+  { label:"Shopify",    color:"#96bf48", bg:"rgba(150,191,72,0.09)",  border:"rgba(150,191,72,0.28)",  delay:1.5, pos:{top:"48%", left:"2%"},
+    svg:<svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M15.5 5.5c-.1-.7-.7-1-1.2-1.1l-1-.1c0 0-.3-.8-.4-1-.2-.5-.6-.8-1.1-.8-.4 0-.8.1-1.1.4-.1-.1-.3-.1-.4-.2C9.8 2.4 9 2.8 8.7 3.5L6.3 17.5c-.1.6.3 1.2.9 1.3l8.5 1.2c.6.1 1.2-.3 1.3-.9l1.5-12.4c0-.5-.7-.8-3-.7z" stroke="#96bf48" strokeWidth="1.1"/><path d="M12.5 4.3c-.5 1.3-.9 2.8-1 3.7h1.8c.1-.9.5-2.4.9-3.5-.7-.1-1.3-.1-1.7-.2z" fill="#96bf48"/><path d="M9.5 14.5c0 .8.6 1.5 1.5 1.5s1.5-.7 1.5-1.5-.6-1.5-1.5-1.5-1.5.7-1.5 1.5z" fill="#96bf48"/></svg> },
+  { label:"Formik",     color:"#0ea5e9", bg:"rgba(14,165,233,0.08)",  border:"rgba(14,165,233,0.25)",  delay:0.7, pos:{top:"60%", left:"1%"},
     svg:<svg viewBox="0 0 24 24" width="16" height="16" fill="none"><rect x="3" y="6" width="18" height="13" rx="2" stroke="#0ea5e9" strokeWidth="1.3"/><path d="M7 10h10M7 14h6" stroke="#0ea5e9" strokeWidth="1.3" strokeLinecap="round"/></svg> },
-  { label:"Node.js",    color:"#68a063", bg:"rgba(104,160,99,0.08)",  border:"rgba(104,160,99,0.25)",  delay:1.8, pos:{top:"71%", left:"1%"},
+  { label:"Node.js",    color:"#68a063", bg:"rgba(104,160,99,0.08)",  border:"rgba(104,160,99,0.25)",  delay:1.8, pos:{top:"72%", left:"2%"},
     svg:<svg viewBox="0 0 24 24" width="16" height="16"><polygon points="12,2 21,7 21,17 12,22 3,17 3,7" fill="none" stroke="#68a063" strokeWidth="1.3"/><text x="7.5" y="15.5" fontSize="6.5" fontWeight="bold" fill="#68a063" fontFamily="monospace">JS</text></svg> },
-  { label:"Bootstrap",  color:"#7952b3", bg:"rgba(121,82,179,0.08)",  border:"rgba(121,82,179,0.25)",  delay:3.0, pos:{top:"85%", left:"2%"},
+  { label:"Bootstrap",  color:"#7952b3", bg:"rgba(121,82,179,0.08)",  border:"rgba(121,82,179,0.25)",  delay:3.0, pos:{top:"84%", left:"1%"},
     svg:<svg viewBox="0 0 24 24" width="16" height="16"><rect width="24" height="24" rx="4" fill="#7952b3"/><text x="5" y="18" fontSize="13" fontWeight="900" fill="white" fontFamily="monospace">B</text></svg> },
 
   // ─── RIGHT COLUMN: top 15% → 85%, step 14% ──────────────────────────────
