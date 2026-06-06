@@ -102,7 +102,7 @@ export default function Contact() {
               </div>
               <div className="flex flex-col gap-1.5"><label className="text-[0.82rem] text-[var(--text-muted)] font-medium">{t.contact.form.msg}</label><textarea name="message" placeholder={t.contact.form.msgPh} required className="form-input min-h-[110px] resize-y"/></div>
               <div>
-                <div className="cf-turnstile" data-sitekey={TURNSTILE_KEY} data-theme="dark" data-language="es" data-appearance="interaction-only" data-callback="onTurnstileVerify" data-expired-callback="onTurnstileExpire"/>
+                <div className="cf-turnstile" data-sitekey={TURNSTILE_KEY} data-theme="dark" data-language="es" data-callback="onTurnstileVerify" data-expired-callback="onTurnstileExpire"/>
                 {!token && status==='idle' && <p className="text-[0.75rem] text-[var(--text-dim)] mt-1.5 font-mono">{t.contact.captcha}</p>}
                 {token && <p className="text-[0.75rem] text-mint mt-1.5 font-mono">{t.contact.captchaOk}</p>}
               </div>
