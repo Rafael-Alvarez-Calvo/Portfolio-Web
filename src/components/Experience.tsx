@@ -84,11 +84,11 @@ const logos: Record<string, (p: LogoProps) => JSX.Element> = {
       className={`object-contain ${className} relative top-[-5px] h-8`}
     />
   ),
-  sidertia: ({ className }) => (
+  sidertia: () => (
     <img
       src="/logo-sidertia.png"
       alt="Sidertia"
-      className={`object-contain rounded-lg ${className} relative top-[-5px] h-14 w-12`}
+      className={`object-contain rounded-lg relative top-[-5px] h-12 w-12`}
     />
   ),
 };
