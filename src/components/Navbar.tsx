@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useLang } from "../contexts/LanguageContext";
 import { Download } from "lucide-react";
 
-export default function Navbar() {
+export const Navbar = () => {
   const { lang, setLang, t } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -177,4 +177,4 @@ export default function Navbar() {
       )}
     </nav>
   );
-}
+};

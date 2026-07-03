@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import { useLang } from "../contexts/LanguageContext";
 import { useReveal } from "../hooks/useReveal";
 
@@ -47,6 +46,8 @@ const logos: Record<string, (p: LogoProps) => JSX.Element> = {
     <img
       src="/logo-caixabank.webp"
       alt="CaixaBank Tech"
+      loading="lazy"
+      decoding="async"
       className={`object-contain ${className} relative top-[-2px]`}
     />
   ),
@@ -60,6 +61,8 @@ const logos: Record<string, (p: LogoProps) => JSX.Element> = {
       <img
         src="https://www.habitatsoft.com/images/assets/svg/logoHS.svg"
         alt="Habitatsoft"
+        loading="lazy"
+        decoding="async"
         className="h-8 object-contain"
         style={{ filter: "contrast(0.7)" }}
         onError={(e) => {
@@ -70,6 +73,8 @@ const logos: Record<string, (p: LogoProps) => JSX.Element> = {
       <img
         src="https://statics.imghs.net/dist/img/pisos-logo-white.svg"
         alt="Pisos.com"
+        loading="lazy"
+        decoding="async"
         className="h-5 object-contain relative top-[-5px]"
         onError={(e) => {
           (e.target as HTMLImageElement).style.display = "none";
@@ -81,6 +86,8 @@ const logos: Record<string, (p: LogoProps) => JSX.Element> = {
     <img
       src="/logo-paldental.webp"
       alt="Clínica Paldental"
+      loading="lazy"
+      decoding="async"
       className={`object-contain ${className} relative top-[-5px] h-8`}
     />
   ),
@@ -88,6 +95,8 @@ const logos: Record<string, (p: LogoProps) => JSX.Element> = {
     <img
       src="/logo-sidertia.png"
       alt="Sidertia"
+      loading="lazy"
+      decoding="async"
       className={`object-contain rounded-lg relative top-[-5px] h-12 w-12`}
     />
   ),
@@ -95,7 +104,7 @@ const logos: Record<string, (p: LogoProps) => JSX.Element> = {
 
 const logoKeys = ["caixabank", "mentorup", "pisos", "paldental", "sidertia"];
 
-function TimelineItem({
+const TimelineItem = ({
   job,
   index,
   currentLabel,
@@ -110,30 +119,14 @@ function TimelineItem({
   };
   index: number;
   currentLabel: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
+}) => {
+  const { ref, visible } = useReveal<HTMLDivElement>(0.1);
   const Logo = logos[logoKeys[index]];
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          el.classList.add("visible");
-          obs.unobserve(el);
-        }
-      },
-      { threshold: 0.1 },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
 
   return (
     <div
       ref={ref}
-      className="timeline-item relative flex gap-8"
+      className={`timeline-item ${visible ? "visible" : ""} relative flex gap-8`}
       style={{ transitionDelay: `${index * 0.08}s` }}
     >
       {/* Line + dot */}
@@ -207,9 +200,9 @@ function TimelineItem({
       </div>
     </div>
   );
-}
+};
 
-export default function Experience() {
+export const Experience = () => {
   const { t } = useLang();
   const h = useReveal();
 
@@ -239,4 +232,4 @@ export default function Experience() {
       </div>
     </section>
   );
-}
+};

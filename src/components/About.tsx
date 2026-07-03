@@ -7,7 +7,7 @@ const colorMap: Record<string, string> = {
   bool:'text-emerald-400', text:'text-[var(--text-muted)]',
 }
 
-export default function About() {
+export const About = () => {
   const { t } = useLang()
   const c = t.about.code
   const left = useReveal(); const right = useReveal()

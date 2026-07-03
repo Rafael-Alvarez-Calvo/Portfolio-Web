@@ -17,8 +17,8 @@ const contactLinks = [
 
 type Status = 'idle'|'loading'|'success'|'error'
 
-export default function Contact() {
-  const { t } = useLang()
+export const Contact = () => {
+  const { t, lang } = useLang()
   const header = useReveal(); const left = useReveal(); const right = useReveal()
   const formRef = useRef<HTMLFormElement>(null)
   const [token, setToken] = useState<string|null>(null)
@@ -45,7 +45,7 @@ export default function Contact() {
       await emailjs.send(EJ_SERVICE, EJ_TEMPLATE, {
         from_name: data.get('from_name'), from_email: data.get('from_email'),
         service: data.get('service'), message: data.get('message'),
-        time: new Date().toLocaleString(t === (window as any).__t_es ? 'es-ES' : 'en-GB', { dateStyle:'full', timeStyle:'short' }),
+        time: new Date().toLocaleString(lang === 'es' ? 'es-ES' : 'en-GB', { dateStyle:'full', timeStyle:'short' }),
       }, EJ_KEY)
       setStatus('success'); formRef.current?.reset(); setToken(null)
       window.turnstile?.reset()

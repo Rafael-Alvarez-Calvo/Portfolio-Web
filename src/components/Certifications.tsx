@@ -1,7 +1,7 @@
 import { useLang } from '../contexts/LanguageContext'
 import { useReveal } from '../hooks/useReveal'
 
-function CertCard({ cert, delay }: { cert:{icon:string;name:string;meta:string}; delay:number }) {
+const CertCard = ({ cert, delay }: { cert:{icon:string;name:string;meta:string}; delay:number }) => {
   const { ref, visible } = useReveal()
   return (
     <div ref={ref} className={`reveal ${['','d1','d2'][delay]} ${visible?'visible':''} bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 flex items-center gap-4 hover:border-blue transition-colors duration-200`}>
@@ -11,7 +11,7 @@ function CertCard({ cert, delay }: { cert:{icon:string;name:string;meta:string};
   )
 }
 
-export default function Certifications() {
+export const Certifications = () => {
   const { t } = useLang(); const h = useReveal(); const edu = useReveal()
   return (
     <section id="certifications" className="py-24 px-6 bg-[var(--bg2)]">
