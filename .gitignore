@@ -23,7 +23,7 @@ dist-ssr/
 *.suo
 *.ntvs*
 *.njsproj
-*.sln
+*.slnP
 *.sw?
 
 # OS
@@ -32,3 +32,4 @@ Thumbs.db
 
 .claude/
 graphify-out/
+coverage/

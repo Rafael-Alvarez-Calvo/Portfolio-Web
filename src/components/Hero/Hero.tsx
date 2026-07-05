@@ -1,45 +1,37 @@
 import { useEffect, useRef, useState } from "react";
-import rafaelPhoto from "../assets/Rafael.webp";
-import { useReveal, useCounter } from "../hooks/useReveal";
-import { useLang } from "../contexts/LanguageContext";
-import { ICONS } from "./Hero.data";
-
-const ROLES = [
-  "Frontend Developer",
-  "React Specialist",
-  "AI Solutions Dev",
-  "Full Stack Dev",
-  "Software Engineer",
-];
+import rafaelPhoto from "../../assets/Rafael.webp";
+import { useReveal, useCounter } from "../../hooks/useReveal";
+import { useLang } from "../../contexts/LanguageContext";
+import { HERO_TYPEWRITER_ROLES, HERO_TECH_ICONS } from "./Hero.constants";
 
 const TypeWriter = ({ lang }: { lang: string }) => {
   const [text, setText] = useState("");
-  const [roleIdx, setRoleIdx] = useState(0);
+  const [roleIndex, setRoleIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);
   useEffect(() => {
     setText("");
-    setRoleIdx(0);
+    setRoleIndex(0);
     setDeleting(false);
   }, [lang]);
   useEffect(() => {
-    const cur = ROLES[roleIdx],
-      delay = deleting ? 45 : 100;
-    const t = setTimeout(() => {
+    const currentRole = HERO_TYPEWRITER_ROLES[roleIndex],
+      typingDelay = deleting ? 45 : 100;
+    const typingTimeoutId = setTimeout(() => {
       if (!deleting) {
-        const n = cur.slice(0, text.length + 1);
-        setText(n);
-        if (n === cur) setTimeout(() => setDeleting(true), 2200);
+        const nextText = currentRole.slice(0, text.length + 1);
+        setText(nextText);
+        if (nextText === currentRole) setTimeout(() => setDeleting(true), 2200);
       } else {
-        const n = text.slice(0, -1);
-        setText(n);
-        if (n === "") {
+        const nextText = text.slice(0, -1);
+        setText(nextText);
+        if (nextText === "") {
           setDeleting(false);
-          setRoleIdx((i) => (i + 1) % ROLES.length);
+          setRoleIndex((previousRoleIndex) => (previousRoleIndex + 1) % HERO_TYPEWRITER_ROLES.length);
         }
       }
-    }, delay);
-    return () => clearTimeout(t);
-  }, [text, roleIdx, deleting]);
+    }, typingDelay);
+    return () => clearTimeout(typingTimeoutId);
+  }, [text, roleIndex, deleting]);
   return (
     <div className="font-mono text-cyan text-base mb-6 min-h-[1.75rem]">
       <span className="text-[var(--text-dim)]">&gt; </span>
@@ -75,7 +67,7 @@ const StatItem = ({
 
 export const Hero = () => {
   const { ref, visible } = useReveal();
-  const { lang, t } = useLang();
+  const { lang, translations } = useLang();
 
   return (
     <section
@@ -99,7 +91,7 @@ export const Hero = () => {
         <div ref={ref} className={`reveal ${visible ? "visible" : ""}`}>
           <div className="inline-flex items-center gap-2 bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.3)] rounded-full px-4 py-1.5 font-mono text-[0.75rem] text-cyan mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-mint animate-pulse-dot" />
-            {t.hero.badge}
+            {translations.hero.badge}
           </div>
           <h1 className="font-syne text-[clamp(2.4rem,5vw,3.8rem)] font-extrabold leading-[1.05] mb-2">
             Rafael
@@ -108,9 +100,9 @@ export const Hero = () => {
           </h1>
           <TypeWriter lang={lang} />
           <p className="text-[var(--text-muted)] text-[0.97rem] leading-7 max-w-[460px] mb-8">
-            {t.hero.desc}{" "}
+            {translations.hero.desc}{" "}
             <strong className="text-[var(--text)] font-medium">
-              {t.hero.strong}
+              {translations.hero.strong}
             </strong>
           </p>
           <div className="flex gap-3 flex-wrap">
@@ -118,20 +110,20 @@ export const Hero = () => {
               href="#projects"
               className="bg-gradient-to-br from-blue to-[#1d4ed8] text-white px-8 py-3 rounded-lg font-semibold text-[0.95rem] shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:-translate-y-0.5 hover:shadow-[0_0_45px_rgba(59,130,246,0.5)] transition-all duration-200"
             >
-              {t.hero.cta1}
+              {translations.hero.cta1}
             </a>
             <a
               href="#contact"
               className="border border-[var(--border)] text-[var(--text)] px-8 py-3 rounded-lg font-semibold text-[0.95rem] hover:border-blue hover:bg-[rgba(59,130,246,0.05)] transition-all duration-200"
             >
-              {t.hero.cta2}
+              {translations.hero.cta2}
             </a>
           </div>
           <div className="flex gap-8 mt-10 pt-8 border-t border-[var(--border)]">
-            <StatItem target={4} label={t.hero.stats.exp} suffix="+" />
-            <StatItem target={10} label={t.hero.stats.projects} suffix="+" />
-            <StatItem target={5} label={t.hero.stats.companies} />
-            <StatItem target={6} label={t.hero.stats.certs} />
+            <StatItem target={4} label={translations.hero.stats.exp} suffix="+" />
+            <StatItem target={10} label={translations.hero.stats.projects} suffix="+" />
+            <StatItem target={5} label={translations.hero.stats.companies} />
+            <StatItem target={6} label={translations.hero.stats.certs} />
           </div>
         </div>
 
@@ -243,23 +235,23 @@ export const Hero = () => {
           </div>
 
           {/* Floating icons — organic positions */}
-          {ICONS.map((icon) => (
+          {HERO_TECH_ICONS.map((techIcon) => (
             <div
-              key={icon.label}
+              key={techIcon.label}
               className="absolute z-30 flex items-center gap-2 px-2.5 py-1.5 rounded-xl backdrop-blur-sm cursor-default"
               style={{
-                ...icon.pos,
-                background: icon.bg,
-                border: `1px solid ${icon.border}`,
-                animation: `floatOrg 4s ease-in-out ${icon.delay}s infinite`,
+                ...techIcon.position,
+                background: techIcon.backgroundColor,
+                border: `1px solid ${techIcon.borderColor}`,
+                animation: `floatOrg 4s ease-in-out ${techIcon.animationDelay}s infinite`,
               }}
             >
-              <div className="flex-shrink-0">{icon.svg}</div>
+              <div className="flex-shrink-0">{techIcon.icon}</div>
               <span
                 className="font-mono text-[0.68rem] font-medium whitespace-nowrap"
-                style={{ color: icon.color }}
+                style={{ color: techIcon.color }}
               >
-                {icon.label}
+                {techIcon.label}
               </span>
             </div>
           ))}

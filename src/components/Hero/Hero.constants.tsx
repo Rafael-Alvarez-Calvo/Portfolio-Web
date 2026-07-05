@@ -1,24 +1,24 @@
-export type HeroIcon = {
-  label: string;
-  color: string;
-  bg: string;
-  border: string;
-  delay: number;
-  pos: { top: string; left?: string; right?: string };
-  svg: JSX.Element;
-};
+import type { HeroIcon } from "./index";
+
+export const HERO_TYPEWRITER_ROLES = [
+  "Frontend Developer",
+  "React Specialist",
+  "AI Solutions Dev",
+  "Full Stack Dev",
+  "Software Engineer",
+] as const;
 
 // ── Tech icons — positions from devtools ────────────────────────────────────
-export const ICONS: HeroIcon[] = [
+export const HERO_TECH_ICONS: HeroIcon[] = [
   // LEFT COLUMN
   {
     label: "React",
     color: "#61dafb",
-    bg: "rgba(97,218,251,0.08)",
-    border: "rgba(97,218,251,0.28)",
-    delay: 0,
-    pos: { top: "18%", left: "14%" },
-    svg: (
+    backgroundColor: "rgba(97,218,251,0.08)",
+    borderColor: "rgba(97,218,251,0.28)",
+    animationDelay: 0,
+    position: { top: "18%", left: "14%" },
+    icon: (
       <svg viewBox="0 0 24 24" width="16" height="16" fill="#61dafb">
         <circle cx="12" cy="12" r="2.2" />
         <ellipse
@@ -56,11 +56,11 @@ export const ICONS: HeroIcon[] = [
   {
     label: "TypeScript",
     color: "#3178c6",
-    bg: "rgba(49,120,198,0.1)",
-    border: "rgba(49,120,198,0.3)",
-    delay: 1.2,
-    pos: { top: "30%", left: "4%" },
-    svg: (
+    backgroundColor: "rgba(49,120,198,0.1)",
+    borderColor: "rgba(49,120,198,0.3)",
+    animationDelay: 1.2,
+    position: { top: "30%", left: "4%" },
+    icon: (
       <svg viewBox="0 0 24 24" width="16" height="16">
         <rect width="24" height="24" rx="3" fill="#3178c6" />
         <text
@@ -79,11 +79,11 @@ export const ICONS: HeroIcon[] = [
   {
     label: "Redux",
     color: "#764abc",
-    bg: "rgba(118,74,188,0.1)",
-    border: "rgba(118,74,188,0.28)",
-    delay: 2.4,
-    pos: { top: "43%", left: "1%" },
-    svg: (
+    backgroundColor: "rgba(118,74,188,0.1)",
+    borderColor: "rgba(118,74,188,0.28)",
+    animationDelay: 2.4,
+    position: { top: "43%", left: "1%" },
+    icon: (
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
         <path
           d="M16 5.5C18 7 19 9 18.5 12"
@@ -120,11 +120,11 @@ export const ICONS: HeroIcon[] = [
   {
     label: "Formik",
     color: "#0ea5e9",
-    bg: "rgba(14,165,233,0.08)",
-    border: "rgba(14,165,233,0.25)",
-    delay: 0.7,
-    pos: { top: "57%", left: "2%" },
-    svg: (
+    backgroundColor: "rgba(14,165,233,0.08)",
+    borderColor: "rgba(14,165,233,0.25)",
+    animationDelay: 0.7,
+    position: { top: "57%", left: "2%" },
+    icon: (
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
         <rect
           x="3"
@@ -147,11 +147,11 @@ export const ICONS: HeroIcon[] = [
   {
     label: "Node.js",
     color: "#68a063",
-    bg: "rgba(104,160,99,0.08)",
-    border: "rgba(104,160,99,0.25)",
-    delay: 1.8,
-    pos: { top: "72%", left: "5%" },
-    svg: (
+    backgroundColor: "rgba(104,160,99,0.08)",
+    borderColor: "rgba(104,160,99,0.25)",
+    animationDelay: 1.8,
+    position: { top: "72%", left: "5%" },
+    icon: (
       <svg viewBox="0 0 24 24" width="16" height="16">
         <polygon
           points="12,2 21,7 21,17 12,22 3,17 3,7"
@@ -175,11 +175,11 @@ export const ICONS: HeroIcon[] = [
   {
     label: "Bootstrap",
     color: "#7952b3",
-    bg: "rgba(121,82,179,0.08)",
-    border: "rgba(121,82,179,0.25)",
-    delay: 3.0,
-    pos: { top: "85%", left: "10%" },
-    svg: (
+    backgroundColor: "rgba(121,82,179,0.08)",
+    borderColor: "rgba(121,82,179,0.25)",
+    animationDelay: 3.0,
+    position: { top: "85%", left: "10%" },
+    icon: (
       <svg viewBox="0 0 24 24" width="16" height="16">
         <rect width="24" height="24" rx="4" fill="#7952b3" />
         <text
@@ -200,11 +200,11 @@ export const ICONS: HeroIcon[] = [
   {
     label: "JavaScript",
     color: "#f7df1e",
-    bg: "rgba(247,223,30,0.08)",
-    border: "rgba(247,223,30,0.28)",
-    delay: 0.4,
-    pos: { top: "18%", right: "12%" },
-    svg: (
+    backgroundColor: "rgba(247,223,30,0.08)",
+    borderColor: "rgba(247,223,30,0.28)",
+    animationDelay: 0.4,
+    position: { top: "18%", right: "12%" },
+    icon: (
       <svg viewBox="0 0 24 24" width="16" height="16">
         <rect width="24" height="24" rx="3" fill="#f7df1e" />
         <text
@@ -223,11 +223,11 @@ export const ICONS: HeroIcon[] = [
   {
     label: "Vite",
     color: "#a855f7",
-    bg: "rgba(168,85,247,0.08)",
-    border: "rgba(168,85,247,0.25)",
-    delay: 1.6,
-    pos: { top: "29%", right: "7%" },
-    svg: (
+    backgroundColor: "rgba(168,85,247,0.08)",
+    borderColor: "rgba(168,85,247,0.25)",
+    animationDelay: 1.6,
+    position: { top: "29%", right: "7%" },
+    icon: (
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
         <polygon
           points="12,2 22,7 22,17 12,22 2,17 2,7"
@@ -246,11 +246,11 @@ export const ICONS: HeroIcon[] = [
   {
     label: "Tailwind",
     color: "#38bdf8",
-    bg: "rgba(56,189,248,0.08)",
-    border: "rgba(56,189,248,0.25)",
-    delay: 2.7,
-    pos: { top: "43%", right: "1%" },
-    svg: (
+    backgroundColor: "rgba(56,189,248,0.08)",
+    borderColor: "rgba(56,189,248,0.25)",
+    animationDelay: 2.7,
+    position: { top: "43%", right: "1%" },
+    icon: (
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
         <path
           d="M6 10c1-4 3.5-6 6-5s4.5 4 3 6c-1.5 2.5.5 5 3 4"
@@ -270,11 +270,11 @@ export const ICONS: HeroIcon[] = [
   {
     label: "Zustand",
     color: "#ca8a04",
-    bg: "rgba(202,138,4,0.08)",
-    border: "rgba(202,138,4,0.25)",
-    delay: 0.3,
-    pos: { top: "57%", right: "2%" },
-    svg: (
+    backgroundColor: "rgba(202,138,4,0.08)",
+    borderColor: "rgba(202,138,4,0.25)",
+    animationDelay: 0.3,
+    position: { top: "57%", right: "2%" },
+    icon: (
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
         <circle cx="12" cy="12" r="9" stroke="#ca8a04" strokeWidth="1.3" />
         <path
@@ -289,11 +289,11 @@ export const ICONS: HeroIcon[] = [
   {
     label: "Jest",
     color: "#c21325",
-    bg: "rgba(194,19,37,0.08)",
-    border: "rgba(194,19,37,0.25)",
-    delay: 2.0,
-    pos: { top: "72%", right: "5%" },
-    svg: (
+    backgroundColor: "rgba(194,19,37,0.08)",
+    borderColor: "rgba(194,19,37,0.25)",
+    animationDelay: 2.0,
+    position: { top: "72%", right: "5%" },
+    icon: (
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
         <circle cx="12" cy="12" r="9" stroke="#c21325" strokeWidth="1.3" />
         <text
@@ -312,11 +312,11 @@ export const ICONS: HeroIcon[] = [
   {
     label: "Webpack",
     color: "#8dd6f9",
-    bg: "rgba(141,214,249,0.07)",
-    border: "rgba(141,214,249,0.22)",
-    delay: 3.3,
-    pos: { top: "85%", right: "12%" },
-    svg: (
+    backgroundColor: "rgba(141,214,249,0.07)",
+    borderColor: "rgba(141,214,249,0.22)",
+    animationDelay: 3.3,
+    position: { top: "85%", right: "12%" },
+    icon: (
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
         <polygon
           points="12,2 21,7 21,17 12,22 3,17 3,7"
@@ -336,11 +336,11 @@ export const ICONS: HeroIcon[] = [
   {
     label: "Claude AI",
     color: "#d97706",
-    bg: "rgba(217,119,6,0.08)",
-    border: "rgba(217,119,6,0.25)",
-    delay: 2.2,
-    pos: { top: "10%", left: "32%" },
-    svg: (
+    backgroundColor: "rgba(217,119,6,0.08)",
+    borderColor: "rgba(217,119,6,0.25)",
+    animationDelay: 2.2,
+    position: { top: "10%", left: "32%" },
+    icon: (
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
         <circle cx="12" cy="12" r="9" stroke="#d97706" strokeWidth="1.3" />
         <path
@@ -356,11 +356,11 @@ export const ICONS: HeroIcon[] = [
   {
     label: "Git",
     color: "#f05032",
-    bg: "rgba(240,80,50,0.08)",
-    border: "rgba(240,80,50,0.25)",
-    delay: 1.4,
-    pos: { top: "10%", right: "33%" },
-    svg: (
+    backgroundColor: "rgba(240,80,50,0.08)",
+    borderColor: "rgba(240,80,50,0.25)",
+    animationDelay: 1.4,
+    position: { top: "10%", right: "33%" },
+    icon: (
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
         <circle cx="6" cy="18" r="2" fill="#f05032" />
         <circle cx="18" cy="6" r="2" fill="#f05032" />
@@ -377,11 +377,11 @@ export const ICONS: HeroIcon[] = [
   {
     label: "n8n",
     color: "#ea4b71",
-    bg: "rgba(234,75,113,0.08)",
-    border: "rgba(234,75,113,0.25)",
-    delay: 0.9,
-    pos: { top: "25%", left: "30%" },
-    svg: (
+    backgroundColor: "rgba(234,75,113,0.08)",
+    borderColor: "rgba(234,75,113,0.25)",
+    animationDelay: 0.9,
+    position: { top: "25%", left: "30%" },
+    icon: (
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
         <rect
           x="2"
@@ -424,11 +424,11 @@ export const ICONS: HeroIcon[] = [
   {
     label: "Shopify",
     color: "#96bf48",
-    bg: "rgba(150,191,72,0.09)",
-    border: "rgba(150,191,72,0.28)",
-    delay: 1.5,
-    pos: { top: "40%", left: "22%" },
-    svg: (
+    backgroundColor: "rgba(150,191,72,0.09)",
+    borderColor: "rgba(150,191,72,0.28)",
+    animationDelay: 1.5,
+    position: { top: "40%", left: "22%" },
+    icon: (
       <svg viewBox="0 0 109 124" width="16" height="16">
         <path
           d="M74.7 14.8s-.3 0-.7.2c-.4-1.2-1.1-2.3-2-3.1-1-1-2.2-1.5-3.5-1.5-1 0-2 .3-2.9.8-.8-1-2-1.7-3.3-1.7-5.5 0-8.2 6.9-9 10.4-2.2.7-3.7 1.1-3.8 1.2-1.2.4-1.2.4-1.3 1.5-.1.9-3.4 26.1-3.4 26.1l27.6 4.8V14.8h-.7zm-8.5 2.6c-1.1.3-2.3.7-3.5 1.1.7-2.7 2-4.1 3.1-4.6.3 1.2.4 2.4.4 3.5zm-5.9-2.1c-1.4.5-2.9 1.8-3.8 4.7-.9.3-1.8.5-2.7.8.9-3.4 3-7 6.5-5.5zm2.8-3.8c.5 0 .9.2 1.3.5-2 .9-4.1 3.2-5 7.2l-3.8 1.2c1-3.7 3.4-8.9 7.5-8.9z"
@@ -445,11 +445,11 @@ export const ICONS: HeroIcon[] = [
   {
     label: "Figma",
     color: "#f24e1e",
-    bg: "rgba(242,78,30,0.08)",
-    border: "rgba(242,78,30,0.25)",
-    delay: 1.0,
-    pos: { top: "33%", right: "23%" },
-    svg: (
+    backgroundColor: "rgba(242,78,30,0.08)",
+    borderColor: "rgba(242,78,30,0.25)",
+    animationDelay: 1.0,
+    position: { top: "33%", right: "23%" },
+    icon: (
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
         <rect x="7" y="2" width="5" height="5" rx="1" fill="#f24e1e" />
         <rect x="12" y="2" width="5" height="5" rx="1" fill="#a259ff" />

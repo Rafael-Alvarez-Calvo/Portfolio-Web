@@ -1,35 +1,39 @@
 import { useEffect, useState, useRef } from "react";
-import { useLang } from "../contexts/LanguageContext";
+import { useLang } from "../../contexts/LanguageContext";
 import { Download } from "lucide-react";
+import type { NavigationLink } from "./index";
 
 export const Navbar = () => {
-  const { lang, setLang, t } = useLang();
+  const { lang, setLang, translations } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cvOpen, setCvOpen] = useState(false);
-  const cvRef = useRef<HTMLDivElement>(null);
+  const [cvDropdownOpen, setCvDropdownOpen] = useState(false);
+  const cvDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (cvRef.current && !cvRef.current.contains(e.target as Node))
-        setCvOpen(false);
+    const handleClickOutside = (mouseEvent: MouseEvent) => {
+      if (
+        cvDropdownRef.current &&
+        !cvDropdownRef.current.contains(mouseEvent.target as Node)
+      )
+        setCvDropdownOpen(false);
     };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const links = [
-    { href: "#about", label: t.nav.about },
-    { href: "#services", label: t.nav.services },
-    { href: "#skills", label: t.nav.skills },
-    { href: "#experience", label: t.nav.experience },
-    { href: "#projects", label: t.nav.projects },
+  const navigationLinks: NavigationLink[] = [
+    { href: "#about", label: translations.nav.about },
+    { href: "#services", label: translations.nav.services },
+    { href: "#skills", label: translations.nav.skills },
+    { href: "#experience", label: translations.nav.experience },
+    { href: "#projects", label: translations.nav.projects },
   ];
 
   return (
@@ -51,13 +55,13 @@ export const Navbar = () => {
 
         {/* Links — true center */}
         <ul className="flex gap-8 list-none items-center">
-          {links.map((l) => (
-            <li key={l.href}>
+          {navigationLinks.map((navigationLink) => (
+            <li key={navigationLink.href}>
               <a
-                href={l.href}
+                href={navigationLink.href}
                 className="text-[var(--text-muted)] hover:text-[var(--text)] text-sm font-medium tracking-wide transition-colors"
               >
-                {l.label}
+                {navigationLink.label}
               </a>
             </li>
           ))}
@@ -75,28 +79,28 @@ export const Navbar = () => {
           </button>
 
           {/* CV dropdown */}
-          <div ref={cvRef} className="relative">
+          <div ref={cvDropdownRef} className="relative">
             <button
-              onClick={() => setCvOpen(!cvOpen)}
+              onClick={() => setCvDropdownOpen(!cvDropdownOpen)}
               className="h-9 px-3 flex items-center gap-1.5 bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.3)] rounded-lg text-xs font-semibold text-cyan hover:bg-[rgba(59,130,246,0.18)] transition-all whitespace-nowrap"
             >
-              <Download className="w-4 h-4" /> {t.nav.downloadCV}
+              <Download className="w-4 h-4" /> {translations.nav.downloadCV}
             </button>
-            {cvOpen && (
+            {cvDropdownOpen && (
               <div className="absolute right-0 top-full mt-2 bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] min-w-[178px] z-50">
                 <a
                   href="/cv-es.pdf"
                   download
                   className="flex items-center gap-2.5 px-4 py-3 text-sm text-[var(--text)] hover:bg-[rgba(59,130,246,0.1)] transition-colors border-b border-[var(--border)]"
                 >
-                  🇪🇸 {t.nav.cvEs}
+                  🇪🇸 {translations.nav.cvEs}
                 </a>
                 <a
                   href="/cv-en.pdf"
                   download
                   className="flex items-center gap-2.5 px-4 py-3 text-sm text-[var(--text)] hover:bg-[rgba(59,130,246,0.1)] transition-colors"
                 >
-                  🇬🇧 {t.nav.cvEn}
+                  🇬🇧 {translations.nav.cvEn}
                 </a>
               </div>
             )}
@@ -106,7 +110,7 @@ export const Navbar = () => {
             href="#contact"
             className="h-9 px-4 flex items-center bg-blue text-white text-sm font-semibold rounded-lg hover:opacity-85 transition-opacity whitespace-nowrap"
           >
-            {t.nav.contact}
+            {translations.nav.contact}
           </a>
         </div>
       </div>
@@ -134,14 +138,14 @@ export const Navbar = () => {
 
       {menuOpen && (
         <div className="absolute top-16 left-0 w-full bg-[var(--card)] border-b border-[var(--border)] flex flex-col p-4 gap-2 md:hidden z-40">
-          {links.map((l) => (
+          {navigationLinks.map((navigationLink) => (
             <a
-              key={l.href}
-              href={l.href}
+              key={navigationLink.href}
+              href={navigationLink.href}
               className="text-[var(--text-muted)] text-sm py-2 border-b border-[var(--border)]"
               onClick={() => setMenuOpen(false)}
             >
-              {l.label}
+              {navigationLink.label}
             </a>
           ))}
           <div className="flex gap-2 mt-2">
@@ -157,21 +161,21 @@ export const Navbar = () => {
             download
             className="text-center bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.3)] text-cyan text-sm font-semibold py-2 rounded-lg"
           >
-            🇪🇸 {t.nav.cvEs}
+            🇪🇸 {translations.nav.cvEs}
           </a>
           <a
             href="/cv-en.pdf"
             download
             className="text-center bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.3)] text-cyan text-sm font-semibold py-2 rounded-lg"
           >
-            🇬🇧 {t.nav.cvEn}
+            🇬🇧 {translations.nav.cvEn}
           </a>
           <a
             href="#contact"
             className="text-center bg-blue text-white text-sm font-semibold py-2 rounded-lg mt-1"
             onClick={() => setMenuOpen(false)}
           >
-            {t.nav.contact}
+            {translations.nav.contact}
           </a>
         </div>
       )}
