@@ -9,7 +9,7 @@
 
 **Portfolio personal de Rafael Álvarez Calvo — Frontend Developer & AI Solutions**
 
-[🌐 Ver en vivo](https://rafaelac.dev) · [💼 LinkedIn](https://www.linkedin.com/in/rafael-ac/) · [✉️ Contacto](mailto:rafael.alvarez@hotmail.es)
+[🌐 Ver en vivo](https://rafaelac.netlify.app) · [💼 LinkedIn](https://www.linkedin.com/in/rafael-ac/) · [✉️ Contacto](mailto:rafael.alvarez@hotmail.es)
 
 </div>
 
@@ -219,7 +219,7 @@ Las variables CSS están en `src/index.css`:
 
 **Rafael Álvarez Calvo**
 
-- 🌐 [rafael.ac](https://rafaelac.dev)
+- 🌐 [rafael.ac](https://rafaelac.netlify.app)
 - 💼 [linkedin.com/in/rafael-ac](https://www.linkedin.com/in/rafael-ac/)
 - 🐙 [github.com/Rafael-Alvarez-Calvo](https://github.com/Rafael-Alvarez-Calvo)
 - ✉️ rafael.alvarez@hotmail.es

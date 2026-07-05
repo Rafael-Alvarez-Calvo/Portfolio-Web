@@ -23,6 +23,8 @@ describe('LanguageProvider', () => {
     )
     expect(screen.getByTestId('current-lang')).toHaveTextContent('es')
     expect(screen.getByTestId('nav-about')).toHaveTextContent('Sobre mí')
+    expect(document.documentElement.lang).toBe('es')
+    expect(document.title).toBe('Rafael Álvarez Calvo | Desarrollador Frontend en Madrid')
   })
 
   it('switches translations when setLang is called', async () => {
@@ -37,6 +39,8 @@ describe('LanguageProvider', () => {
 
     expect(screen.getByTestId('current-lang')).toHaveTextContent('en')
     expect(screen.getByTestId('nav-about')).toHaveTextContent('About')
+    expect(document.documentElement.lang).toBe('en')
+    expect(document.title).toBe('Rafael Álvarez Calvo | Frontend Developer in Madrid')
   })
 })
 
